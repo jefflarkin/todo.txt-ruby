@@ -1,11 +1,19 @@
 Todo.txt Ruby Library
 ====================
-Author: Jeff Larkin <jeff@jefflarkin.com>
-License: MIT License (http://www.opensource.org/licenses/mit-license.php)
-Purpose:
+Author
+------
+Jeff Larkin <jeff@jefflarkin.com>
+
+License
+-------
+MIT License (http://www.opensource.org/licenses/mit-license.php)
+
+Purpose
+-------
 This library provides a Ruby interface to the todo.txt (http://todotxt.com)
 file format, as proposed by Gina Trapani.  The library has the following 
 features:
+
 * Parse a todo.txt file into Todo objects, including priority, contexts, and 
   projects
 * Modify Todo objects and output the edited objects to todo.txt formatted
