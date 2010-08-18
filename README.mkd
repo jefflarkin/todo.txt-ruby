@@ -1,0 +1,119 @@
+Todo.txt Ruby Library
+====================
+Author: Jeff Larkin <jeff@jefflarkin.com>
+License: MIT License (http://www.opensource.org/licenses/mit-license.php)
+Purpose:
+This library provides a Ruby interface to the todo.txt (http://todotxt.com)
+file format, as proposed by Gina Trapani.  The library has the following 
+features:
+* Parse a todo.txt file into Todo objects, including priority, contexts, and 
+  projects
+* Modify Todo objects and output the edited objects to todo.txt formatted
+  strings
+* Sort an Array of Todo objects based on completeness and priority.
+
+A Rake tasks file has also been included for managing a todo.txt file in a
+project.
+
+Usage
+-----
+
+Load a todo.txt file:
+
+    > require 'todo'
+     => true 
+    > todos = Todo.parse_file("todo.txt")
+     => [Create examples, (A) Finish README +docs, x Write library]
+
+Parse a todo.txt string:
+
+    > require 'todo'
+     => true 
+    > todos = Todo.parse(File.new("todo.txt").read)
+     => [Create examples, (A) Finish README +docs, x Write library]
+
+List and manage the contexts of a todo:
+
+    > todo = Todo.new "Create an example with a @context"
+     => Create an example with a @context 
+    > todo.contexts
+     => ["context"] 
+    > todo.contexts = ["context", "another"]
+     => ["context", "another"]
+    > puts todo
+    Create an example with a @context @another
+     => nil 
+
+List and manage the projects of a todo:
+
+    > todo = Todo.new "This is a todo with a +project"
+     => This is a todo with a +project 
+    > todo.projects
+     => ["project"] 
+    > todo.projects = ["project", "newproject"]
+     => ["project", "newproject"] 
+    > todo.projects
+     => ["project", "newproject"] 
+    > todo.projects = ["newproject"]
+     => ["newproject"] 
+    > puts todo
+    This is a todo with a  +newproject 
+     => nil 
+
+Display and set the priority of a todo:
+
+    > todo = Todo.new "(A) This is a high priority task."
+     => (A) This is a high priority task. 
+    > todo.priority
+     => "A" 
+    > todo.priority = "B"
+     => "B" 
+    > puts todo
+    (B) This is a high priority task.
+     => nil 
+
+Print a sorted list of todos:
+
+    > todos = Todo.parse_file "todo.txt"
+     => [Create examples, (A) Finish README +docs, x Write library] 
+    > puts todos
+    Create examples
+    (A) Finish README +docs
+    x Write library
+     => nil 
+    > puts todos.sort
+    (A) Finish README +docs
+    x Write library
+    Create examples
+     => nil 
+    > puts todos.sort.reject{|t| t.done?}
+    (A) Finish README +docs
+    Create examples
+     => nil 
+
+Mark a todo as done or not done:
+
+    > todo = Todo.new "This task isn't done"
+     => This task isn't done 
+    > todo.done?
+     => false 
+    > todo.do
+     => true 
+    > todo.done?
+     => true 
+    > puts todo
+    x This task isn't done
+     => nil 
+    > todo.undo
+     => false 
+    > todo.done?
+     => false 
+    > puts todo
+    This task isn't done
+     => nil 
+
+Still To Do
+-----------
+See todo.txt.  :)
+
+    $ rake todo:list

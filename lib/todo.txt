@@ -1,0 +1,3 @@
+Create examples
+(A) Finish README +docs
+x Write library

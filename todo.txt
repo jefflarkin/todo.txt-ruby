@@ -1,0 +1,11 @@
+(A) Gemify
+(B) Push gem
+(C) Create cli utility (may use thor tasks below)
+x (C) Add tests
+(D) Hook into railties
+(D) Create thor tasks to match rake
+(E) Add BirdsEye port
+x (A) Implement done
+x (A) Make rake tasks
+x (A) Finish README
+x (B) Push to Github
