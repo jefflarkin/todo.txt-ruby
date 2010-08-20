@@ -1,4 +1,4 @@
-require './todo'
+require File.expand_path('../todo', __FILE__)
 describe Todo, "#parsing"  do
   it "can parse a standard todo" do
     s = "This is a standard todo"
@@ -45,11 +45,11 @@ describe Todo, "#parsing"  do
   end
   it "can parse a list of todos" do
     
-    @todos = Todo.parse(File.open("todo_spec.txt","r").read)
+    @todos = Todo.parse(File.open(File.expand_path('../todo_spec.txt', __FILE__),"r").read)
     @todos.count.should == 5
   end
   it "can parse a file" do
-    @todos = Todo.parse_file("todo_spec.txt")
+    @todos = Todo.parse_file(File.expand_path('../todo_spec.txt', __FILE__))
     @todos.count.should == 5
   end
 end
